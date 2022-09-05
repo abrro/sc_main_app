@@ -13,7 +13,7 @@ module.exports = {
         allowNull: false,
         onDelete: 'cascade',
         references:{
-          model:'movies',
+          model:'Movies',
           key:'id',
           }
       },
@@ -22,7 +22,7 @@ module.exports = {
         allowNull: false,
         onDelete: 'cascade',
         references:{
-          model:'movielists',
+          model:'Movielists',
           key:'id'
           }
       },
