@@ -79,6 +79,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Reviews', fields, {});
+    return queryInterface.bulkDelete('Reviews', null, {});
   }
 };

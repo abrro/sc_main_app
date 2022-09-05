@@ -43,30 +43,6 @@ module.exports = {
       updatedAt:  new Date()
     },
     {
-      title : 'The Wolf of Wall Street',
-      synopsis: 'Based on the true story of Jordan Belfort, from his rise to a wealthy stock-broker living the high life to his fall involving crime, corruption and the federal government.',
-      release_date: new Date("2013-12-11"),
-      categoryId: 4,
-      createdAt: new Date(),
-      updatedAt:  new Date()
-    },
-    {
-      title : 'The Wolf of Wall Street',
-      synopsis: 'Based on the true story of Jordan Belfort, from his rise to a wealthy stock-broker living the high life to his fall involving crime, corruption and the federal government.',
-      release_date: new Date("2013-12-11"),
-      categoryId: 4,
-      createdAt: new Date(),
-      updatedAt:  new Date()
-    },
-  {
-      title : 'The Wolf of Wall Street',
-      synopsis: 'Based on the true story of Jordan Belfort, from his rise to a wealthy stock-broker living the high life to his fall involving crime, corruption and the federal government.',
-      release_date: new Date("2013-12-11"),
-      categoryId: 4,
-      createdAt: new Date(),
-      updatedAt:  new Date()
-    },
-    {
       title : 'Dummy movie 1',
       synopsis: 'Dummy movie synopsis 1',
       release_date: new Date("2013-12-11"),
