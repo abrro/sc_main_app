@@ -32,6 +32,8 @@ route.get('/movies/trending', (req, res) => {
       .catch( err => res.status(500).json(err) );
 });
 
+//where : {where: sequelize.where(sequelize.fn('IS NOT NULL', sequelize.col('avgRating')))},
+
 route.get('/movies/toprated', (req, res) => {
     Movies.findAll({
         attributes: {
