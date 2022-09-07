@@ -48,6 +48,7 @@ route.get('/movies/toprated', (req, res) => {
           duplicating: false
         }],
         group: ['Movies.id'],
+        having: [[sequelize.col("avgRating")], {[Op.ne] : null}],
         order: [[sequelize.col("avgRating"), "DESC"]],
         limit: 10
       })
