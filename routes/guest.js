@@ -39,6 +39,7 @@ route.get('/movies/toprated', (req, res) => {
              [sequelize.fn('AVG', sequelize.col('reviews.rating')), 'avgRating']
           ]
         },
+        where : {where: sequelize.where(sequelize.fn('IS NOT NULL', sequelize.col('avgRating')))},
         include: [{
           attributes: [],
           model : Reviews,
@@ -46,7 +47,6 @@ route.get('/movies/toprated', (req, res) => {
           duplicating: false
         }],
         group: ['Movies.id'],
-        //where : {where: sequelize.where(sequelize.fn('IS NOT NULL', sequelize.col('avgRating')))},
         order: [[sequelize.col("avgRating"), "DESC"]],
         limit: 10
       })
