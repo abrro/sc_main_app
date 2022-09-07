@@ -32,7 +32,7 @@ route.get('/movies/trending', (req, res) => {
       .catch( err => res.status(500).json(err) );
 });
 
-//where : {where: sequelize.where(sequelize.fn('NOT EQUAL', sequelize.col('avgRating'), 0))},
+//where : {where: sequelize.where(sequelize.fn('IS NOT NULL', sequelize.col('avgRating')))},
 
 route.get('/movies/toprated', (req, res) => {
     Movies.findAll({
@@ -48,6 +48,7 @@ route.get('/movies/toprated', (req, res) => {
           duplicating: false
         }],
         group: ['Movies.id'],
+        where : {where: sequelize.where(sequelize.fn('IS NOT NULL', sequelize.col('avgRating')))},
         order: [[sequelize.col("avgRating"), "DESC"]],
         limit: 10
       })
