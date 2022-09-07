@@ -46,6 +46,7 @@ route.get('/movies/toprated', (req, res) => {
           duplicating: false
         }],
         group: ['Movies.id'],
+        where : {avgRating : {[Op.ne] : 0}},
         order: [[sequelize.col("avgRating"), "DESC"]],
         limit: 10
       })
@@ -54,19 +55,19 @@ route.get('/movies/toprated', (req, res) => {
 });
 
 route.get('/movies/search', (req, res) => {
-    Movies.findAll({where : {title : {[Op.like] : `%${req.query.title.toLowerCase()}%`}}, include : ['category']})
+    Movies.findAll({where : {title : {[Op.iLike] : `%${req.query.title}%`}}, include : ['category']})
         .then( rows => res.json(rows) )
         .catch( err => res.status(500).json(err) );
 });
 
 route.get('/movies/count/search', (req, res) => {
-    Movies.count({where : {title : {[Op.like] : `%${req.query.title.toLowerCase()}%`}}})
+    Movies.count({where : {title : {[Op.iLike] : `%${req.query.title}%`}}})
         .then( rows => res.json(rows) )
         .catch( err => res.status(500).json(err) );
 });
 
 route.get('/movies/page/:page/search', (req, res) => {
-    Movies.findAll({where : {title : {[Op.like] : `%${req.query.title.toLowerCase()}%`}},
+    Movies.findAll({where : {title : {[Op.iLike] : `%${req.query.title}%`}},
                             offset : (req.params.page - 1) * 10,
                             limit : 10,
                             include : ['category']})
