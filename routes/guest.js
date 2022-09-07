@@ -25,6 +25,7 @@ route.get('/movies/trending', (req, res) => {
           duplicating: false
         }],
         group: ['Movies.id'],
+        having: sequelize.literal(`count(reviews.id) > 0`),
         order: [[sequelize.col("reviewsCount"), "DESC"]],
         limit: 10
       })
@@ -32,8 +33,7 @@ route.get('/movies/trending', (req, res) => {
       .catch( err => res.status(500).json(err) );
 });
 
-//where : {where: sequelize.where(sequelize.fn('IS NOT NULL', sequelize.col('avgRating')))},
-
+//prvo u postgresu ide having pa select boze sacuvaj
 route.get('/movies/toprated', (req, res) => {
     Movies.findAll({
         attributes: {
@@ -45,11 +45,11 @@ route.get('/movies/toprated', (req, res) => {
           attributes: [],
           model : Reviews,
           as : 'reviews',
-          duplicating: false
+          duplicating: false,
         }],
         group: ['Movies.id'],
-        //having: [[sequelize.col("avgRating")], {[Op.ne] : null}],
-        order: [[sequelize.col("avgRating"), "DESC"]],
+        having: sequelize.literal(`avg(reviews.rating) > 0`),
+        order : [[sequelize.col("avgRating"), "DESC"]],
         limit: 10
       })
       .then( rows => res.json(rows) )
